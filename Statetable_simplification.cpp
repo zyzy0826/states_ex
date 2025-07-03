@@ -1,5 +1,5 @@
 /* Mealy
-   Moore ªº²Ä¤G­Ó¿é¥X¥´0 */
+   Moore çš„ç¬¬äºŒå€‹è¼¸å‡ºæ‰“0 */
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -11,23 +11,23 @@ struct state{
     int group_id = -1;
 };
 
-map<string, int> state_id; // ¬ö¿ıª¬ºA½s¸¹
-map<string, int> groups_id; // ¬ö¿ı¿é¥X¹ïÀ³ªº²Õ§O
-vector<vector<int>> groups; // ¥ş³¡ªº²Õ§O
+map<string, int> state_id; // ç´€éŒ„ç‹€æ…‹ç·¨è™Ÿ
+map<string, int> groups_id; // ç´€éŒ„è¼¸å‡ºå°æ‡‰çš„çµ„åˆ¥
+vector<vector<int>> groups; // å…¨éƒ¨çš„çµ„åˆ¥
 
 int main()
 {
 
-    cout << "½Ğ¿é¤Jª¬ºA¼Æ¶q : ";
+    cout << "è«‹è¼¸å…¥ç‹€æ…‹æ•¸é‡ : ";
     int state_num; cin >> state_num;
 
-    /* 1. ³B²z¿é¤J */
+    /* 1. è™•ç†è¼¸å…¥ */
 
-    // «Ø¥ßª¬ºAªí
+    // å»ºç«‹ç‹€æ…‹è¡¨
 
     vector<state> states;
-    cout << "(Moore¾÷²Ä¤G­Ó¿é¥X¼g\'0\')\n";
-    cout << "½Ğ¿é¤J(ªÅ®æ°Ï¤À)\n" << "ª¬ºA¦WºÙ  ¿é¥X(0/1)  ¦¸ºA(0/1)\n";
+    cout << "(Mooreæ©Ÿç¬¬äºŒå€‹è¼¸å‡ºå¯«\'0\')\n";
+    cout << "è«‹è¼¸å…¥(ç©ºæ ¼å€åˆ†)\n" << "ç‹€æ…‹åç¨±  è¼¸å‡º(0/1)  æ¬¡æ…‹(0/1)\n";
 
     for(int i = 0; i < state_num; i++){
         state present_state;
@@ -38,18 +38,18 @@ int main()
         state_id[states[i].name] = i;
     }
 
-    // °O¿ı¦¸ºA½s¸¹
+    // è¨˜éŒ„æ¬¡æ…‹ç·¨è™Ÿ
 
     for(state &present_state : states){
         present_state.next_number[0] = state_id[present_state.next_state0];
         present_state.next_number[1] = state_id[present_state.next_state1];
     }
 
-    /* 2. ¤À²Õ */
+    /* 2. åˆ†çµ„ */
 
     groups.resize(state_num);
 
-    // ²Ä¤@¦¸¤À²Õ¨Ì¾a¿é¥Xª¬ºA¨Ó¤À
+    // ç¬¬ä¸€æ¬¡åˆ†çµ„ä¾é è¼¸å‡ºç‹€æ…‹ä¾†åˆ†
 
     int group_num = 0;
     for(state &present_state : states){
@@ -70,7 +70,7 @@ int main()
         }
     }
 
-    /* 3. ´`Àô */
+    /* 3. å¾ªç’° */
 
     while(true){
         vector<vector<int>> new_group;
@@ -78,10 +78,10 @@ int main()
         map<string, int> new_gpid;
         int new_gpnum = 0;
 
-        for(int i = 0; i < group_num; i++){ // ¹ï¨C­Ó²Õ§O¨ú¦U¤¸¯À
+        for(int i = 0; i < group_num; i++){ // å°æ¯å€‹çµ„åˆ¥å–å„å…ƒç´ 
             vector<int> &group = groups[i];
 
-            for(int &s : group){ // ¨ú¥X°}¦C¤¤ªº¤¸¯À(¦U²Õªº¦¨­û½s¸¹)
+            for(int &s : group){ // å–å‡ºé™£åˆ—ä¸­çš„å…ƒç´ (å„çµ„çš„æˆå“¡ç·¨è™Ÿ)
                 state &st = states[s];
                 string st_out;
                 int ne0 = state_id[ st.next_state0 ];
@@ -105,11 +105,11 @@ int main()
 
         }
 
-        // ¬O§_¤À§¹²Õ§O?
+        // æ˜¯å¦åˆ†å®Œçµ„åˆ¥?
 
-        if(new_gpnum == group_num)  break; // ²Õ§O¼Æ¤£ÅÜ == ¤w¤À²Õ¦Ü³ÌÂ²
+        if(new_gpnum == group_num)  break; // çµ„åˆ¥æ•¸ä¸è®Š == å·²åˆ†çµ„è‡³æœ€ç°¡
 
-        // §ó·s²Õ§Oª¬ªp
+        // æ›´æ–°çµ„åˆ¥ç‹€æ³
 
         for(int i = 0; i < new_gpnum; i++){
             vector<int> &group = new_group[i];
@@ -129,7 +129,7 @@ int main()
 
     // output
 
-    cout << "\n¤ÆÂ²«á: \n" << "ª¬ºA¦WºÙ  ¿é¥X(0/1)  ¦¸ºA(0/1)\n";
+    cout << "\nåŒ–ç°¡å¾Œ: \n" << "ç‹€æ…‹åç¨±  è¼¸å‡º(0/1)  æ¬¡æ…‹(0/1)\n";
 
     for(int i = 0; i < group_num; i++){
         int j = groups[i][0];
@@ -145,51 +145,3 @@ int main()
     }
 
 }
-
-
-/*
-
-³o¬O§Ú·Q¼¶¼gªºµ{¦¡¤@¨Ç¨ãÅéªºªì¨B·Qªk
-
-*ª¬ºAªí¤ÆÂ²¡X¡X¤À²Õªk
-1. ®Ú¾Úinputªº¿é¥Xª¬ºA¤À²Õ
-2. ®Ú¾Ú¦Pgroupªº¦Uª¬ºA¤§¦¸ºA¬O§_¦b¦P²Õ
-¡÷¦P²Õ¡G¯dµÛ / ¤£¦P¡G©î²Õ¡]¦¸ºA¦b¦P²ÕªÌ¤À¨ì¦P¤@²Õ¡^
-3. ­«½Æ°Ê§@2ª½¨ìµLªk¦A¤À²Õ
-4. ²Õ¤ºsort¡]¦r¨å§Ç¤pªÌ±Æ«e¡^
-5. ¦X¨Ö¡Aª¬ºAªí¥u¯d¤U¦U²Õ±ÆÀY¡A¦P²ÕªÌ¥Ñ±ÆÀY´À¥N
-
-¾D¹J°İÃD
-1. ¤À²Õ¡G³Ì¦h¥|²Õ(2^2)
-
-*/
-
-/*
-A 0 0 C F
-B 0 1 E F
-C 0 0 B C
-D 0 1 C F
-E 0 0 D E
-F 0 0 A E
-
-A 0 0 C B
-B 1 0 A E
-C 0 0 D F
-D 0 0 A B
-E 1 0 B D
-F 1 0 C E
-
-A 0 0 C D
-B 1 0 E A
-C 0 0 A E
-D 1 0 D F
-E 1 0 B C
-F 0 0 A B
-
-S0 0 0 S1 S4
-S1 0 1 S0 S4
-S2 0 1 S3 S2
-S3 1 0 S5 S4
-S4 1 0 S0 S3
-S5 0 0 S2 S3
-*/
