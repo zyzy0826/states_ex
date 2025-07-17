@@ -127,7 +127,7 @@ int main()
         groups_id = new_gpid;
     }
 
-    // output
+    /* 4. 處理輸出 */
 
     cout << "\n化簡後: \n" << "狀態名稱  輸出(0/1)  次態(0/1)\n";
 
